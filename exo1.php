@@ -105,25 +105,31 @@ echo 'Résultat exo6 69€ + 10% : ' . addPercent(69.0, 10.0);
 echo "\n\n";
 echo "EXO - LE COMBAT DES HEROS \n";
 
-$heroes = [];
 function createHero(
     string $key1,
     string $key2,
     string $key3,
     string $value1,
-    string $value2,
-    string $value3
+    int $value2,
+    int $value3,
+    array &$heroes
 ): array {
     $hero = [$key1 => $value1, $key2 => $value2, $key3 => $value3];
+    array_push($heroes, $hero);
     return $hero;
 }
-array_push($heroes, createHero('name', 'hp', 'damages', 'Warrior', 540, 25));
-array_push($heroes, createHero('name', 'hp', 'damages', 'Mage', 430, 31));
 
-print_r($heroes);
+$heroes = [];
+// array_push($heroes, createHero('name', 'hp', 'damages', 'Warrior', 540, 25));
+// array_push($heroes, createHero('name', 'hp', 'damages', 'Mage', 430, 31));
+
+createHero('name', 'hp', 'damages', 'Warrior', 540, 25, $heroes);
+createHero('name', 'hp', 'damages', 'Wizard', 430, 31, $heroes);
+
+// print_r($heroes);
 
 
-function displayHero(array $hero, int $nbData = 1)
+function displayHero(array $hero, int $nbData = 3)
 {
     echo "* Nom : " . $hero['name'] . "\n";
     if ($nbData >= 2) {
@@ -239,11 +245,16 @@ echo "-----------------------------------\n";
 $equipe1 = [];
 $equipe2 = [];
 
-array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Luke', 540, 25));
-array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Obi Wan', 530, 31));
-array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Han Solo', 220, 10));
-array_push($equipe2, createHero('name', 'hp', 'damages', 'eq2 : Darth Maul', 490, 28));
-array_push($equipe2, createHero('name', 'hp', 'damages', 'eq2 : Darth Vader', 590, 35));
+// array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Luke', 540, 25));
+// array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Obi Wan', 530, 31));
+// array_push($equipe1, createHero('name', 'hp', 'damages', 'eq1 : Han Solo', 220, 10));
+// array_push($equipe2, createHero('name', 'hp', 'damages', 'eq2 : Darth Maul', 490, 28));
+// array_push($equipe2, createHero('name', 'hp', 'damages', 'eq2 : Darth Vader', 590, 35));
+createHero('name', 'hp', 'damages', 'eq1 : Luke', 540, 25, $equipe1);
+createHero('name', 'hp', 'damages', 'eq1 : Obi Wan', 530, 31, $equipe1);
+createHero('name', 'hp', 'damages', 'eq1 : Han Solo', 220, 10, $equipe1);
+createHero('name', 'hp', 'damages', 'eq2 : Darth Maul', 490, 28, $equipe2);
+createHero('name', 'hp', 'damages', 'eq2 : Darth Vader', 590, 35, $equipe2);
 
 displayHeroes($equipe1, 3);
 displayHeroes($equipe2, 3);
