@@ -1,6 +1,6 @@
 
-<br>
-<a href="/">Retour Home</a>
+<hr>
+<a href="../index.php">Retour Home</a>
 
 </body>
 
