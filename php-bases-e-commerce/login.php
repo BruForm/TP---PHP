@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-include './data/users.php';
+// include './data/users.php';
+require_once './functions/login.php';
 
 $page = 'login';
 $pageTitle = "Connexion";
@@ -11,16 +12,21 @@ $error = null;
 if ((isset($_GET['email']) && !empty($_GET['email']))
     && (isset($_GET['password']) && !empty($_GET['password']))
 ) {
-    foreach ($users as $user) {
-        if ($user['email'] === $_GET['email']) {
+    $UserLoged = checkUserLogin($_GET['email'], $_GET['password']);                 // utilisation function
+    if ($UserLoged['loginOK']) {                                                    // utilisation function
+        $_SESSION['user'] = $UserLoged['userLoged'];                                // utilisation function
+        header('location: ./index.php');                                            // utilisation function
+    } else $error = "Les informations saisies sont incorrectes !";                  // utilisation function
 
-            if (password_verify($_GET['password'], $user['password'])) {
-                $_SESSION['user'] = $user;
-                header('location: ./index.php');
-                break 1;
-            } else $error = "Les informations saisies sont incorrectes !";
-        } 
-    }
+    // foreach ($users as $user) {                                                  // utilisation function
+    //     if ($user['email'] === $_GET['email']) {                                 // utilisation function
+    //         if (password_verify($_GET['password'], $user['password'])) {         // utilisation function
+    //             $_SESSION['user'] = $user;                                       // utilisation function
+    //             header('location: ./index.php');                                 // utilisation function
+    //             break 1;                                                         // utilisation function
+    //         } else $error = "Les informations saisies sont incorrectes !";       // utilisation function
+    //     }                                                                        // utilisation function
+    // }                                                                            // utilisation function
 }
 
 
