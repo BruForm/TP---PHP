@@ -21,7 +21,7 @@ if (isset($_GET['page'])) {
 <div class="container">
     <h1>Articles</h1>
 
-    Vous êtes sur la page <?= $articlesPage ?>
+    <h1>Vous êtes sur la page article n° <?= $articlesPage ?></h1>
 
     <ul style="display: flex; gap: 2rem; list-style: none;">
         <?php foreach (range(1, 5) as $index) : ?>
