@@ -41,7 +41,7 @@ if (isset($_POST['productToDelete'])) {
                                 <td>
                                     <form action="" method="POST">
                                         <input type="text" name="productToDelete" value="<?= $productId ?>" hidden>
-                                        <button type="submit" value="" style="background: transparent; border: none;"><i class="fa-solid fa-xmark"></i></button>
+                                        <button type="submit" class="fa-solid fa-xmark" value="" style="background: transparent; border: none;"></button>
                                     </form>
                                 </td>
                                 <td><a href="./details.php?id=<?= $productId ?>" style="text-decoration: none;color: white;"><?= $products[$productId]['name'] ?></a></td>
