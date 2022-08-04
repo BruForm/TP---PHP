@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once './functions/cart.php';
+
 $page = 'cart';
 $pageTitle = "Panier";
 $customCssLinks = ['<link rel="stylesheet" href="/assets/cart.css">'];
@@ -11,6 +13,20 @@ $total = 0;
 
 if (isset($_POST['productToDelete'])) {
     unset($_SESSION['cart'][$_POST['productToDelete']]);
+}
+
+//Controle modification quantite via input
+
+if (isset($_POST['productToChange']) && isset($_POST['qte'])) {
+    $InputproductId = $_POST['productToChange'];
+    $Inputqte = $_POST['qte'];
+    if (getQteProductFromCart($InputproductId) != $Inputqte) {
+        if ($Inputqte > 0) {
+            changeQteProductInCart($InputproductId, $Inputqte);
+        } else {
+            deleteProductFromCart($InputproductId);
+        }
+    }
 }
 
 ?>
@@ -40,12 +56,23 @@ if (isset($_POST['productToDelete'])) {
                             <tr>
                                 <td>
                                     <form action="" method="POST">
-                                        <input type="text" name="productToDelete" value="<?= $productId ?>" hidden>
-                                        <button type="submit" class="fa-solid fa-xmark" value="" style="background: transparent; border: none;"></button>
+                                        <input type="hidden" name="productToDelete" id="productToDelete" value="<?= $productId ?>">
+                                        <button type="submit" class="fa-solid fa-xmark" style="background: transparent; border: none;"></button>
                                     </form>
                                 </td>
-                                <td><a href="./details.php?id=<?= $productId ?>" style="text-decoration: none;color: white;"><?= $products[$productId]['name'] ?></a></td>
-                                <td><?= $qte ?></td>
+                                <td><a href="./details.php?id=<?= $productId ?>" style="text-decoration: none;color: white;">
+                                        <?= $products[$productId]['name'] ?>
+                                    </a>
+                                </td>
+                                <td>
+                                    <form action="" method="POST" style="display: flex; height: fit-content;">
+                                        <input type="hidden" name="productToChange" id="productToChange" value="<?= $productId ?>">
+                                        <input type="number" name="qte" id="qte" value="<?= $qte ?>" style="width: 70px; text-align: center;font-weight: bolder; 
+                                        background-color: transparent; color: white; 
+                                        border: 1px solid white; border-radius: 4px;">
+                                        <button type="submit" style="height: 25px;">Modifier</button>
+                                    </form>
+                                </td>
                                 <td class="price-cell">
                                     <?php $total += $qte * $products[$productId]['price'] ?>
                                     <?= number_format($qte * $products[$productId]['price'], 2) ?>

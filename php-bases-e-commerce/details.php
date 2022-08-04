@@ -1,26 +1,35 @@
 <?php
 session_start();
 
-// include './data/products.php';
+require './data/products.php';
 require_once './functions/details.php';
 
 $page = 'details';
 
 // session_destroy();
 
+
+// Utilisation function - SUPPR DEBUT
+// if (isset($_GET['id']) && !empty($_GET['id'])) {
+//     $id = $_GET['id'];
+//     // get the data of the product
+//     foreach ($products as $product) {
+//         if ($id === $product['id']) {
+//             $currentProduct = $product;
+//             break 1;
+//         } 
+//     }
+// };
+// Utilisation function - SUPPR FIN
+
+// Utilisation function - DEBUT
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
     // get the data of the product
-    $currentProduct = getProductData($id);  // utilisation function
-
-    // foreach ($products as $product) {            // utilisation function
-    //     if ($id === $product['id']) {            // utilisation function
-    //         $currentProduct = $product;          // utilisation function
-    //         break 1;                             // utilisation function
-    //     }                                        // utilisation function
-    // }                                            // utilisation function
+    $currentProduct = getProductData($id, $products);
 };
+// utilisation function - FIN
 
 $pageTitle = "Détails: " . $currentProduct['name'];
 $customCssLinks = ['<link rel="stylesheet" href="/assets/details.css">'];
@@ -31,6 +40,36 @@ $customCssLinks = ['<link rel="stylesheet" href="/assets/details.css">'];
 $qteIsNeg = false;
 
 // echo "<pre>" . var_dump($_SESSION) . "</pre><br>";
+
+// Utilisation function - SUPPR DEBUT
+// if ((isset($_POST['quantity']) && !empty($_POST['quantity']) && $_POST['quantity'] > 0)
+//     || (isset($_POST['quantity']) && !empty($_POST['quantity']) && $_POST['quantity'] < 0
+//         && isset($_SESSION['cart'][$currentProduct['id']]))
+// ) {
+//     $inputQte = $_POST['quantity'];
+//     if (
+//         $_POST['quantity'] < 0 &&
+//         $_SESSION['cart'][$currentProduct['id']] < -$_POST['quantity']
+//     ) {
+//         $qteIsNeg = true;
+//     } else {
+//         if (isset($_SESSION['cart'][$currentProduct['id']])) {
+//             //Si on supprime tous les articles, on enlève l'article du panier
+//             if ($_SESSION['cart'][$currentProduct['id']] == -$_POST['quantity']) { 
+//                 unset($_SESSION['cart'][$currentProduct['id']]); 
+//             } else {
+//                 // sinon on modifie la quantité dans le panier
+//                 $_SESSION['cart'][$currentProduct['id']] += $_POST['quantity'];
+//             }
+//         } else {
+//             $_SESSION['cart'][$currentProduct['id']] = $_POST['quantity']; 
+//         }
+//         header('location: ./cart.php');
+//     }
+// }
+// Utilisation function - SUPPR FIN
+
+// Utilisation function - DEBUT
 if ((isset($_POST['quantity']) && !empty($_POST['quantity']) && $_POST['quantity'] > 0)
     || (isset($_POST['quantity']) && !empty($_POST['quantity']) && $_POST['quantity'] < 0
         && isset($_SESSION['cart'][$currentProduct['id']]))
@@ -38,29 +77,26 @@ if ((isset($_POST['quantity']) && !empty($_POST['quantity']) && $_POST['quantity
     $inputQte = $_POST['quantity'];
 
     if (
-        $_POST['quantity'] < 0 &&
-        $_SESSION['cart'][$currentProduct['id']] < -$_POST['quantity']
+        $inputQte < 0 &&
+        getQteProductFromCart($currentProduct['id']) < -$inputQte
     ) {
         $qteIsNeg = true;
     } else {
-        if (isset($_SESSION['cart'][$currentProduct['id']])) {
+        if (productExistsInCart($currentProduct['id'])){
             //Si on supprime tous les articles, on enlève l'article du panier
-            // if ($_SESSION['cart'][$currentProduct['id']] == -$_POST['quantity']) {       // utilisation function
-            if (getQteProductFromCart($currentProduct['id']) == -$inputQte) {               // utilisation function
-                // unset($_SESSION['cart'][$currentProduct['id']]);                         // utilisation function
-                deleteProductFromCart($currentProduct['id']);                               // utilisation function
+            if (getQteProductFromCart($currentProduct['id']) == -$inputQte) {
+                deleteProductFromCart($currentProduct['id']);
             } else {
                 // sinon on modifie la quantité dans le panier
-                // $_SESSION['cart'][$currentProduct['id']] += $_POST['quantity'];          // utilisation function
-                changeQteProduct($currentProduct['id'], $inputQte);                         // utilisation function
+                addQteProductInCart($currentProduct['id'], $inputQte);
             }
         } else {
-            // $_SESSION['cart'][$currentProduct['id']] = $_POST['quantity'];               // utilisation function
-            addProductToCart($currentProduct['id'], $inputQte);                             // utilisation function
+            addProductToCart($currentProduct['id'], $inputQte);
         }
         header('location: ./cart.php');
     }
 }
+// Utilisation function - FIN
 
 ?>
 

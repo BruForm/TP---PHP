@@ -1,9 +1,7 @@
 <?php
 
-function getProductData(string $productId) : array
+function getProductData(string $productId, array $products) : array
 {
-    require_once './data/products.php';
-
     foreach ($products as $product) {
         if ($productId === $product['id']) {
             return $product;
@@ -18,13 +16,11 @@ function productExistsInCart(string $productId): bool{
     else return false;
 }
 
-
-
 function getQteProductFromCart(string $productId): int{
     return $_SESSION['cart'][$productId];
 }
 
-function changeQteProduct(string $productId, int $qte){
+function addQteProductInCart(string $productId, int $qte){
     $_SESSION['cart'][$productId] += $qte;
 }
 

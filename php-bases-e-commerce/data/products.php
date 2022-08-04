@@ -56,4 +56,18 @@ $products = [
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum beatae sit quis nisi, vitae eaque possimus labore adipisci fugiat error quidem officiis dignissimos dolores cum iusto id exercitationem voluptatibus dolorum?',
         'price' => 10.30,
     ],
+    '1c29d656-7afd-4112-be18-f5c757701dcb' => [
+        
+        'id' => '1c29d656-7afd-4112-be18-f5c757701dcb',
+        'name' => 'Produit 9',
+        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum beatae sit quis nisi, vitae eaque possimus labore adipisci fugiat error quidem officiis dignissimos dolores cum iusto id exercitationem voluptatibus dolorum?',
+        'price' => 12.30,
+    ],
+    '1c29d656-7afd-4112-be18-f5c757701dcc' => [
+        
+        'id' => '1c29d656-7afd-4112-be18-f5c757701dcc',
+        'name' => 'Produit 10, quel merveilleux appareil',
+        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum beatae sit quis nisi, vitae eaque possimus labore adipisci fugiat error quidem officiis dignissimos dolores cum iusto id exercitationem voluptatibus dolorum?',
+        'price' => 14.69,
+    ],
 ];
