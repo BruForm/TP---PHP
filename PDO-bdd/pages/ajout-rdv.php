@@ -29,15 +29,13 @@ function selectPatient(): array
 }
 
 // Creation d'un rdv
-if ((isset($_POST['idPatient'], $_POST['firstName'], $_POST['date'], $_POST['hour']))
+if ((isset($_POST['idPatient'], $_POST['date'], $_POST['hour']))
     && !empty($_POST['idPatient'])
-    && !empty($_POST['firstName'])
     && !empty($_POST['date'])
     && !empty($_POST['hour'])
 ) {
     $createNb = insertAppointments(
         htmlentities($_POST['idPatient']),
-        htmlentities($_POST['firstName']),
         htmlentities($_POST['date']),
         htmlentities($_POST['hour'])
     );
