@@ -5,7 +5,12 @@ if (!isset($_SESSION['spy'])) {
         'index' => 0,
         'tpPdo' => 0,
         'patientsPdo' => 0,
+        'listePatients' => 0,
+        'profilePatient' => 0,
         'ajoutPatient' => 0,
+        'listeRdvs' => 0,
+        'rdv' => 0,
+        'ajoutRdv' => 0,
         'connexion' => 0,
     ];
 } else {

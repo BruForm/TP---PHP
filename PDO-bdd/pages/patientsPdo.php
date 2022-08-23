@@ -19,7 +19,7 @@ $styleCSS = '../pages/patientsPdo.css';
             <div class="col-12">
                 <ul>
                     <li><a href="liste-patients.php">Consulter les patients</a></li>
-                    <li><a href="liste-rdv.php">Consulter les rendez-vous</a></li>
+                    <li><a href="liste-rdvs.php">Consulter les rendez-vous</a></li>
                     <li><a href="ajout-patient.php">Ajouter un patient</a></li>
                     <li><a href="ajout-rdv.php">Ajouter un rendez-vous</a></li>
                 </ul>

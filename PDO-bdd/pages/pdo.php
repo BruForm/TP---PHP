@@ -69,6 +69,8 @@ try {
     $sth->execute();
     $resExo7 = $sth->fetchAll(PDO::FETCH_ASSOC);
 
+    $db = null;
+
     // echo "<PRE>";
     // var_dump($resultat);
     // echo "</PRE>";

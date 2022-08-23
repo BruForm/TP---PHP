@@ -4,65 +4,40 @@ if (isset($_SESSION['spy'])) {
     $_SESSION['spy']['ajoutPatient']++;
 }
 
+require_once '../data/dataBase.php';
+
 $title = 'PHP : TP PDO';
 $styleCSS = '../pages/ajout-patient.css';
 
-if ((isset($_POST['lastName'], $_POST['firstName'], $_POST['birthDate'], $_POST['phone'], $_POST['email'])) 
-&& !empty($_POST['lastName'])
-&& !empty($_POST['firstName'])
-&& !empty($_POST['birthDate'])
-&& !empty($_POST['phone'])
-&& !empty($_POST['email']))
+if ((isset($_POST['lastName'], $_POST['firstName'], $_POST['birthDate'], $_POST['phone'], $_POST['email']))
+    && !empty($_POST['lastName'])
+    && !empty($_POST['firstName'])
+    && !empty($_POST['birthDate'])
+    && !empty($_POST['phone'])
+    && !empty($_POST['email'])
+) {
+    $createNb = insertPatient(
+        htmlentities($_POST['lastName']),
+        htmlentities($_POST['firstName']),
+        htmlentities($_POST['birthDate']),
+        htmlentities($_POST['phone']),
+        htmlentities($_POST['email'])
+    );
+}
+
+function insertPatient($lastName, $firstName, $birthDate, $phone, $email): int
 {
-
-    // echo "<PRE>";
-    // var_dump($_POST);
-    // echo "</PRE>";
-    // die();
-
-    $lastName = htmlentities($_POST['lastName']);
-    $firstName = htmlentities($_POST['firstName']);
-    $birthDate = htmlentities($_POST['birthDate']);
-    $phone = htmlentities($_POST['phone']);
-    $email = htmlentities($_POST['email']);
-
-    // PDO - DEBUT
-    $server = 'localhost';
-    $user = 'root';
-    $password = '';
-    $dbname = 'hospitale2n';
-
     try {
-        $db = new PDO("mysql:host=$server;dbname=$dbname", $user, $password);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $queryInsert = "
-            INSERT INTO patients (lastname, firstname, birthdate, phone, mail)
-            VALUES (:lastname, :firstname, :birthdate, :phone, :email)
-        ";
-        $query = $db->prepare($queryInsert);
-
-        $query->bindParam(':lastname', $lastName, PDO::PARAM_STR);
-        $query->bindParam(':firstname', $firstName, PDO::PARAM_STR);
-        $query->bindParam(':birthdate', $birthDate);
-        $query->bindParam(':phone', $phone, PDO::PARAM_STR);
-        $query->bindParam(':email', $email, PDO::PARAM_STR);
-
         $createNb = 0;
-        $query->execute();
-
-        // echo "<PRE>";
-        // var_dump($query->rowCount());
-        // echo "</PRE>";
-        $createNb = $query->rowCount();
-
+        $db = connectDB('localhost', 'hospitale2n', 'root', '');
+        $createNb = queryInsertPatient($db, $lastName, $firstName, $birthDate, $phone, $email);
         $db = null;
+        return $createNb;
     } catch (PDOException $e) {
         echo "<PRE>";
         var_dump($e);
         echo "</PRE>";
     }
-    // PDO - FIN
 }
 
 ?>
@@ -104,6 +79,8 @@ if ((isset($_POST['lastName'], $_POST['firstName'], $_POST['birthDate'], $_POST[
         <?php endif ?>
 
     </form>
+    
+    <a href="liste-patients.php"><button>Retour liste</button></a>
 
 </div>
 

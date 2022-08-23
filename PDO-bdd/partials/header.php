@@ -34,7 +34,12 @@
                 <li>Accueil : <?= $_SESSION['spy']['index'] ?></li>
                 <li>Tp PDO : <?= $_SESSION['spy']['tpPdo'] ?></li>
                 <li>Patients PDO : <?= $_SESSION['spy']['patientsPdo'] ?></li>
+                <li>Liste Patients : <?= $_SESSION['spy']['listePatients'] ?></li>
+                <li>Profile Patient : <?= $_SESSION['spy']['profilePatient'] ?></li>
                 <li>Ajout Patient : <?= $_SESSION['spy']['ajoutPatient'] ?></li>
+                <li>Liste Rendez-vous : <?= $_SESSION['spy']['listeRdvs'] ?></li>
+                <li>Rendez-vous : <?= $_SESSION['spy']['rdv'] ?></li>
+                <li>Ajout Rendez-vous : <?= $_SESSION['spy']['ajoutRdv'] ?></li>
                 <li>Connexion : <?= $_SESSION['spy']['connexion'] ?></li>
                 <li>
                     <form action="../data/empty_&_session.php">

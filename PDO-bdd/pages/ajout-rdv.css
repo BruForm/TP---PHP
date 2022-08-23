@@ -1,4 +1,4 @@
-.createPatient {
+.createRdv {
   display: flex;
   flex-direction: column;
 
@@ -21,14 +21,18 @@ input {
   width: 80%;
 }
 
-.createPatient button {
+.idPatient{
+  width: 80%;
+}
+
+.createRdv button {
   width: 100%;
   margin: 10px 0;
   padding: 5px;
   align-self: center;
 }
 
-.createPatient .alertCreate {
+.createRdv .alertCreate {
     width: 100%;
     margin: 5px 0;
     padding: 5px;
