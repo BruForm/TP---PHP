@@ -1,6 +1,6 @@
 <?php
-$pageTitle = "add-user";
-$customCssLinks = ["<link rel='stylesheet' href='add-user.css'>"];
+$pageTitle = "Connexion";
+$customCssLinks = ["<link rel='stylesheet' href='connexion.css'>"];
 
 // Header
 include_once "../partials/header.php";

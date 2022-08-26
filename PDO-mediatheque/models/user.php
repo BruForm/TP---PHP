@@ -3,32 +3,62 @@
 
 function listUsers(PDO $db): array
 {
-    $querySelect = "SELECT * FROM user ORDER BY name";
+    try {
+        $querySelect = "SELECT * FROM user ORDER BY name";
 
-    $query = $db->prepare($querySelect);
-    $query->execute();
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $db->prepare($querySelect);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "<PRE>";
+        var_dump($e);
+        echo "</PRE>";
+    }
+}
+
+function getUserById(PDO $db, int $id): array
+{
+    try {
+        $querySelect = "SELECT * FROM user WHERE id = :id ORDER BY name";
+
+        $query = $db->prepare($querySelect);
+
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "<PRE>";
+        var_dump($e);
+        echo "</PRE>";
+    }
 }
 
 function addUser(PDO $db)
 {
-    if ((isset($_POST['name'], $_POST['email'], $_POST['password']))
-        && ($_POST['name'] != "")
-        && ($_POST['email'] != "")
-        && ($_POST['password'] != "")
-    ) {
-        $createNb = insertUser(
-            $db,
-            htmlentities($_POST['name']),
-            htmlentities($_POST['email']),
-            password_hash(htmlentities($_POST['password']), PASSWORD_DEFAULT),
-            null
-        );
-        addMessage("success", $createNb . " enregistrement(s) créé(s)");
-        header('Location: /views/list-users.php?action=list-users');
-    } else {
-        addMessage("danger", "Saisie incorrecte ou incomplète !");
-        header('Location: /views/add-user.php?action=view-add-user');
+    try {
+        if ((isset($_POST['name'], $_POST['email'], $_POST['password']))
+            && ($_POST['name'] != "")
+            && ($_POST['email'] != "")
+            && ($_POST['password'] != "")
+        ) {
+            $createNb = insertUser(
+                $db,
+                htmlentities($_POST['name']),
+                htmlentities($_POST['email']),
+                password_hash(htmlentities($_POST['password']), PASSWORD_DEFAULT),
+                null
+            );
+            addMessage("success", $createNb . " enregistrement(s) créé(s)");
+            header('Location: /views/list-users.php?action=list-users');
+        } else {
+            addMessage("danger", "Saisie incorrecte ou incomplète !");
+            header('Location: /views/add-user.php?action=view-add-user');
+        }
+    } catch (PDOException $e) {
+        echo "<PRE>";
+        var_dump($e);
+        echo "</PRE>";
     }
 }
 
@@ -58,27 +88,5 @@ function insertUser(PDO $db, $name, $email, $password, $mediaId): int
         echo "<PRE>";
         var_dump($e);
         echo "</PRE>";
-    }
-}
-
-function connexionCheck(PDO $db): bool
-{
-    if ((isset($_POST['email'], $_POST['password']))
-        && ($_POST['email'] != "")
-        && ($_POST['password'] != "")
-    ) {
-        $users = listUsers($db);
-
-        foreach ($users as $user) {
-            if ($user['email'] === $email) {
-                if (password_verify($password, $user['password'])) {
-                    addMessage("success", "Vous êtes connecté !");
-                    header('Location: /index.php');
-                    return true;
-                }
-            }
-        }
-        addMessage("danger", "Erreur de connexion !");
-        return true;
     }
 }

@@ -12,4 +12,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/models/type.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/user.php";
 
 // CONTROLLER
-require_once $_SERVER['DOCUMENT_ROOT'] . "/router.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/controlers/connexion.php";
+
+require_once $_SERVER['DOCUMENT_ROOT'] . "/controlers/router.php";

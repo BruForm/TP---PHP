@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 26 août 2022 à 06:31
+-- Généré le : ven. 26 août 2022 à 16:02
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `mediatheque`
 --
+CREATE DATABASE IF NOT EXISTS `mediatheque` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mediatheque`;
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` text NOT NULL,
   `media_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
@@ -114,7 +116,9 @@ INSERT INTO `user` (`id`, `name`, `email`, `password`, `media_id`) VALUES
 (12, 'Nom Test6', 'nomtest6@test.fr', '$2y$10$GMhQMasd1AkjD7sZs/1aNuJRzl/lqz1KKmWI/JFjY/JJddPglBuzG', NULL),
 (13, 'Nom Test7', 'nomtest7@test.fr', '$2y$10$aSkFCg0cNt2xxqifo1KhsOsR08oX5CFlXlLQo4hADrIs3VgWbrCa.', NULL),
 (14, 'Nom Test8', 'nomtest8@test.fr', '$2y$10$YEO9VcFsbgxglNnLa8YTAerAPzD2ZaG/ejv/NjaMi4Ah9R6Pa4DI2', NULL),
-(15, 'Nom Test9', 'nomtest9@test.fr', '$2y$10$/OJludV9sN.ZgK5AitcpCeYhO/4YBebLO6M9ks2./yohQdkRPSh1O', NULL);
+(15, 'Nom Test9', 'nomtest9@test.fr', '$2y$10$/OJludV9sN.ZgK5AitcpCeYhO/4YBebLO6M9ks2./yohQdkRPSh1O', NULL),
+(16, 'James Bond', 'jamesbond@gmail.com', '$2y$10$NJ4hG94Pe/0o.N0Esak8g.7qifErukFZ6m0hVBjHJeqPvMNpBNL/e', NULL),
+(17, 'Jean-Charles Longnom', 'jcl@gmail.com', '$2y$10$vz9hl98ernWI4DdoW31d4uzgPRi6/NOW.RvQTxOaflKUwBcO.0fx2', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

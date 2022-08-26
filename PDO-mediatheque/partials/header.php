@@ -26,19 +26,38 @@
 
     <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/loader.php';
-
     ?>
-    <div class="nav-bar">
-        <div class="connexionBtn">
-            <a href="/views/connexion.php?action=connexion">
+    <div class="nav-bar bg-dark">
+        <div class="back-menu-btn">
+            <a href="../index.php">
                 <button type="button" class="btn btn-dark">
-                    Connexion
-                </button></a>
+                    Menu
+                </button>
+            </a>
+        </div>
+        <div class="connexion-btn">
+            <?php if (isset($_SESSION['user'])) : ?>
+                <a href="../index.php?action=disconnexion">
+                    <button type="button" class="btn btn-dark">
+                        Déconnexion
+                    </button>
+                </a>
+            <?php else : ?>
+                <a href="../views/connexion.php?action=connexion">
+                    <button type="button" class="btn btn-dark">
+                        Connexion
+                    </button>
+                </a>
+            <?php endif ?>
+            <div class="connexion-tag">
+                <?php if (isset($_SESSION['user']['name']) && isset($_COOKIE['user']) && $_COOKIE['user']['id'] != "" && $_COOKIE['user']['email'] != "") : ?>
+                    <span class="text-light">( <?= $_SESSION['user']['name'] ?> )</span>
+                <?php endif ?>
+            </div>
         </div>
     </div>
 
-    <hr>
-
+    <!-- <?= "<PRE>" . var_dump($_SESSION['messages']) . "</PRE>"; ?> -->
     <?php showMessage(); ?>
 
     <div class="container">
