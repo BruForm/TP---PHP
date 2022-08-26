@@ -22,8 +22,10 @@ include_once "../partials/header.php";
             <input type="text" name="password" id="password" value="<?= $user['password'] ?>">
         </form>
     <?php endforeach ?>
-</div>
 
+    <a href="add-user.php?action=view-add-user"><button>Créer un utilisateur</button></a>
+
+</div>
 
 <!-- PAGE CODE -- FIN -->
 

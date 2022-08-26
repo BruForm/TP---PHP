@@ -10,4 +10,75 @@ function listUsers(PDO $db): array
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function addUser(PDO $db)
+{
+    if ((isset($_POST['name'], $_POST['email'], $_POST['password']))
+        && ($_POST['name'] != "")
+        && ($_POST['email'] != "")
+        && ($_POST['password'] != "")
+    ) {
+        $createNb = insertUser(
+            $db,
+            htmlentities($_POST['name']),
+            htmlentities($_POST['email']),
+            password_hash(htmlentities($_POST['password']), PASSWORD_DEFAULT),
+            null
+        );
+        addMessage("success", $createNb . " enregistrement(s) créé(s)");
+        header('Location: /views/list-users.php?action=list-users');
+    } else {
+        addMessage("danger", "Saisie incorrecte ou incomplète !");
+        header('Location: /views/add-user.php?action=view-add-user');
+    }
+}
 
+function insertUser(PDO $db, $name, $email, $password, $mediaId): int
+{
+    try {
+        $queryInsert = "
+            INSERT INTO user (name, email, password, media_id)
+            VALUES (:name, :email, :password, :mediaId)
+        ";
+
+        $query = $db->prepare($queryInsert);
+
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        if ($mediaId != null) {
+            $query->bindParam(':mediaId', $mediaId, PDO::PARAM_INT);
+        } else {
+            $null = null;
+            $query->bindParam(':mediaId', $null);
+        }
+
+        $query->execute();
+        return $query->rowCount();
+    } catch (PDOException $e) {
+        echo "<PRE>";
+        var_dump($e);
+        echo "</PRE>";
+    }
+}
+
+function connexionCheck(PDO $db): bool
+{
+    if ((isset($_POST['email'], $_POST['password']))
+        && ($_POST['email'] != "")
+        && ($_POST['password'] != "")
+    ) {
+        $users = listUsers($db);
+
+        foreach ($users as $user) {
+            if ($user['email'] === $email) {
+                if (password_verify($password, $user['password'])) {
+                    addMessage("success", "Vous êtes connecté !");
+                    header('Location: /index.php');
+                    return true;
+                }
+            }
+        }
+        addMessage("danger", "Erreur de connexion !");
+        return true;
+    }
+}

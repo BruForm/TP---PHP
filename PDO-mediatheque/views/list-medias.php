@@ -8,7 +8,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/partials/header.php";
 
 <!-- PAGE CODE -- DEBUT -->
 
-<h1>Liste des médias</h1>
+<h1>Liste des média</h1>
 
 <!-- <?= "<PRE>" . var_dump($db) . "</PRE>"; ?> -->
 
@@ -24,8 +24,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . "/partials/header.php";
             <input type="hidden" name="id" id="id" value="<?= $media['id'] ?>" >
         </form>
     <?php endforeach ?>
-</div>
 
+    <a href="add-media.php?action=view-add-media"><button>Créer un medium</button></a>
+
+</div>
 
 <!-- PAGE CODE -- FIN -->
 

@@ -1,10 +1,25 @@
-*, ::after, ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1{
-    color: darkblue;
-    text-align: center;
+h1 {
+  color: darkblue;
+  text-align: center;
+}
+
+.alert {
+  font-weight: bold;
+  text-align: center;
+}
+
+.nav-bar{
+    display: flex;
+    padding: 5px 10px;
+}
+.nav-bar .connexionBtn {
+    margin-left: auto;
 }

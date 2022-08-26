@@ -20,7 +20,7 @@ function showMessage()
             foreach ($messages as $type => $msg) {
 ?>
                 <div class="alert alert-<?= $type ?>" role="alert">
-                    <?= $msg ?>
+                    <span class="text-<?= $type ?>"><?= $msg ?></span>
                 </div>
 <?php
             }
