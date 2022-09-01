@@ -2,16 +2,14 @@
 
 namespace App;
 
-use \DateTime;
-
-class Album
+class Song
 {
     public function __construct(
         private int $id,
         private string $title,
-        private DateTime $releaseDate,
-        private int $numberOfSongs,
+        private int $duration,
         private float $price,
+        private array $artistsId,
     ) {
     }
 
@@ -33,23 +31,15 @@ class Album
         $this->title = $title;
     }
 
-    public function getReleaseDate(): DateTime
+    public function getDuration(): int
     {
-        return $this->releaseDate;
+        return $this->duration;
     }
-    public function setReleaseDate(string $releaseDate): void
+    public function setDuration(string $duration): void
     {
-        $this->releaseDate = $releaseDate;
+        $this->duration = $duration;
     }
 
-    public function getNnumberOfSongs(): int
-    {
-        return $this->numberOfSongs;
-    }
-    public function setNumberOfSongs(string $numberOfSongs): void
-    {
-        $this->numberOfSongs = $numberOfSongs;
-    }
     public function getPrice(): float
     {
         return $this->price;
@@ -57,5 +47,14 @@ class Album
     public function setPrice(string $price): void
     {
         $this->price = $price;
+    }
+
+    public function getArtistsId(): array
+    {
+        return $this->artistsId;
+    }
+    public function setArtistsId(int $artistsId): void
+    {
+        $this->artistsId = $artistsId;
     }
 }

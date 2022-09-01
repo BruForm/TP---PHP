@@ -2,7 +2,7 @@
     "name": "bruno/spotizer",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/Entity/"
         }
     },
     "require": {}

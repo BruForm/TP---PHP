@@ -16,11 +16,17 @@ class ComposerStaticInitd13868b6307aec8e04f0e8f854ffc0a6
     public static $prefixDirsPsr4 = array (
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/src/Entity',
         ),
     );
 
     public static $classMap = array (
+        'App\\Album' => __DIR__ . '/../..' . '/src/Entity/Album.php',
+        'App\\AlbumSong' => __DIR__ . '/../..' . '/src/Entity/AlbumSong.php',
+        'App\\Artist' => __DIR__ . '/../..' . '/src/Entity/Artist.php',
+        'App\\ArtistStyle' => __DIR__ . '/../..' . '/src/Entity/ArtistStyle.php',
+        'App\\Song' => __DIR__ . '/../..' . '/src/Entity/Song.php',
+        'App\\Style' => __DIR__ . '/../..' . '/src/Entity/Style.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

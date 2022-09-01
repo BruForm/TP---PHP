@@ -1,5 +1,4 @@
 <?php
-namespace App;
 use App\Monster;
 use App\Warrior;
 use App\Wizzard;
