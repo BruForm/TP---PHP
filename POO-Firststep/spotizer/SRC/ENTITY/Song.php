@@ -1,6 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Entity;
+
+use App\Entity\Artist;
+
+use App\Service\FormatService;
 
 class Song
 {
@@ -9,7 +13,7 @@ class Song
         private string $title,
         private int $duration,
         private float $price,
-        private array $artistsId,
+        private array $artists,
     ) {
     }
 
@@ -35,6 +39,10 @@ class Song
     {
         return $this->duration;
     }
+    public function getDurationFormated(): string
+    {
+        return FormatService::formatDuration($this->duration);
+    }
     public function setDuration(string $duration): void
     {
         $this->duration = $duration;
@@ -44,17 +52,25 @@ class Song
     {
         return $this->price;
     }
+    public function getPriceByCurrency($currency = "€"): string
+    {
+        return FormatService::formatPrice($this->price, $currency);
+    }
     public function setPrice(string $price): void
     {
         $this->price = $price;
     }
 
-    public function getArtistsId(): array
+    public function getArtists(): array
     {
-        return $this->artistsId;
+        return $this->artists;
     }
-    public function setArtistsId(int $artistsId): void
+    public function setArtists(array $artists): void
     {
-        $this->artistsId = $artistsId;
+        $this->artists = $artists;
+    }
+    public function addArtist(Artist $artist): void
+    {
+        array_push($this->artists, $artist);
     }
 }

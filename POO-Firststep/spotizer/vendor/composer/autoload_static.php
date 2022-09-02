@@ -16,17 +16,18 @@ class ComposerStaticInitd13868b6307aec8e04f0e8f854ffc0a6
     public static $prefixDirsPsr4 = array (
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Entity',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
     public static $classMap = array (
-        'App\\Album' => __DIR__ . '/../..' . '/src/Entity/Album.php',
-        'App\\AlbumSong' => __DIR__ . '/../..' . '/src/Entity/AlbumSong.php',
-        'App\\Artist' => __DIR__ . '/../..' . '/src/Entity/Artist.php',
-        'App\\ArtistStyle' => __DIR__ . '/../..' . '/src/Entity/ArtistStyle.php',
-        'App\\Song' => __DIR__ . '/../..' . '/src/Entity/Song.php',
-        'App\\Style' => __DIR__ . '/../..' . '/src/Entity/Style.php',
+        'App\\Entity\\Album' => __DIR__ . '/../..' . '/src/Entity/Album.php',
+        'App\\Entity\\AlbumSong' => __DIR__ . '/../..' . '/src/Entity/AlbumSong.php',
+        'App\\Entity\\Artist' => __DIR__ . '/../..' . '/src/Entity/Artist.php',
+        'App\\Entity\\ArtistStyle' => __DIR__ . '/../..' . '/src/Entity/ArtistStyle.php',
+        'App\\Entity\\Song' => __DIR__ . '/../..' . '/src/Entity/Song.php',
+        'App\\Entity\\Style' => __DIR__ . '/../..' . '/src/Entity/Style.php',
+        'App\\Service\\FormatService' => __DIR__ . '/../..' . '/src/Service/FormatService.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

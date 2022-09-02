@@ -21,7 +21,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "Cont
 <?php require __DIR__ . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "partial" . DIRECTORY_SEPARATOR . "header.php"; ?>
 
 
-<H1>Welcome to SPOTIZER</H1>
+<H1 class="text-center">Welcome to SPOTIZER</H1>
 
 
 <?php require __DIR__ . DIRECTORY_SEPARATOR . "view" . DIRECTORY_SEPARATOR . "partial" . DIRECTORY_SEPARATOR . "footer.php"; ?>

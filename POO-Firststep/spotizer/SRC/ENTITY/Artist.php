@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Entity;
+use App\Entity\Style;
 
+use App\Service\FormatService;
 use \DateTime;
 
 class Artist
@@ -11,6 +13,7 @@ class Artist
         private string $name,
         private string $nationality,
         private DateTime $beginingDate,
+        private array $styles,
     ) {
     }
 
@@ -45,8 +48,25 @@ class Artist
     {
         return $this->beginingDate;
     }
+    public function getBeginingDateFormated($format = "Y/m/d"): string
+    {
+        return FormatService::formatDate($this->beginingDate, $format);
+    }
     public function setBeginingDate(string $beginingDate): void
     {
         $this->beginingDate = $beginingDate;
+    }
+
+    public function getStyles(): array
+    {
+        return $this->styles;
+    }
+    public function setStyles(array $styles): void
+    {
+        $this->styles = $styles;
+    }
+    public function addStyle(Style $style): void
+    {
+        array_push($this->styles, $style);
     }
 }

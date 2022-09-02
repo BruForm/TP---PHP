@@ -6,11 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Album' => $baseDir . '/src/Entity/Album.php',
-    'App\\AlbumSong' => $baseDir . '/src/Entity/AlbumSong.php',
-    'App\\Artist' => $baseDir . '/src/Entity/Artist.php',
-    'App\\ArtistStyle' => $baseDir . '/src/Entity/ArtistStyle.php',
-    'App\\Song' => $baseDir . '/src/Entity/Song.php',
-    'App\\Style' => $baseDir . '/src/Entity/Style.php',
+    'App\\Entity\\Album' => $baseDir . '/src/Entity/Album.php',
+    'App\\Entity\\AlbumSong' => $baseDir . '/src/Entity/AlbumSong.php',
+    'App\\Entity\\Artist' => $baseDir . '/src/Entity/Artist.php',
+    'App\\Entity\\ArtistStyle' => $baseDir . '/src/Entity/ArtistStyle.php',
+    'App\\Entity\\Song' => $baseDir . '/src/Entity/Song.php',
+    'App\\Entity\\Style' => $baseDir . '/src/Entity/Style.php',
+    'App\\Service\\FormatService' => $baseDir . '/src/Service/FormatService.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

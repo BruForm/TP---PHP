@@ -1,5 +1,11 @@
 <?php
 
+$link = $_SERVER["REQUEST_URI"];
+$minLink = $link;
+if (strpos($link, ".php", 0)) {
+    $minLink = substr($link, 0, strpos($link, ".php", 0));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,16 +42,13 @@
                     <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
                     <!-- </li> -->
                     <li class="nav-item">
-                        <a class="nav-link" href="../view/artist.php">Artists</a>
+                        <a class="nav-link <?= ($minLink === "/view/artist") ? "active" : ""; ?>" href="../view/artist.php">Artists</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Albums</a>
+                        <a class="nav-link <?= ($minLink === "/view/album") ? "active" : ""; ?>" href="../view/album.php">Albums</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../view/song.php">Songs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link <?= ($minLink === "/view/song") ? "active" : ""; ?>" href="../view/song.php">Songs</a>
                     </li>
                 </ul>
             </div>

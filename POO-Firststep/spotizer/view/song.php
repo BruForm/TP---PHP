@@ -1,4 +1,5 @@
 <?php
+
 require_once $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "src" . DIRECTORY_SEPARATOR . "Controler" . DIRECTORY_SEPARATOR . "session-start.php";
 
 
@@ -11,25 +12,28 @@ $pageTitle = "Songs";
 <?php require __DIR__ . DIRECTORY_SEPARATOR . "partial" . DIRECTORY_SEPARATOR . "header.php"; ?>
 
 <!-- BODY -->
-<H1>Welcome to page SONGS</H1>
+<h1 class="text-center">Welcome to page SONGS</h1>
 
-<table class="table table-dark table-striped">
+<table class="table table-dark table-striped table-hover">
     <thead>
         <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Duration</th>
-            <th scope="col">Price</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-2">Artist(s)</th>
+            <th class="col-md-1">Duration</th>
+            <th class="col-md-1">Price</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($_SESSION['data']['songs'] as $key => $song) : ?>
             <tr>
-                <td><?= $_SESSION['data']['songs'][$key]->getTitle() ?></td>
-                <td><?= ($_SESSION['data']['songs'][$key]->getDuration() >= 3600)
-                        ? ($formated_duration = date("H:i:s", $_SESSION['data']['songs'][$key]->getDuration()))
-                        : ($formated_duration = date("i:s", $_SESSION['data']['songs'][$key]->getDuration())); ?>
+                <td><?= $song->getTitle() ?></td>
+                <td>
+                    <?php foreach ($song->getArtists() as $ind => $artist) : ?>
+                        <?= ($ind === array_search(end($song->getArtists()), $song->getArtists())) ? $artist->getName() : $artist->getName() . " / "; ?>
+                    <?php endforeach ?>
                 </td>
-                <td><?= $_SESSION['data']['songs'][$key]->getPrice() ?> €</td>
+                <td><?= $song->getDurationFormated() ?></td>
+                <td><?= $song->getPriceByCurrency("€") ?></td>
             </tr>
         <?php endforeach ?>
     </tbody>
