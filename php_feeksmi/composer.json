@@ -1,0 +1,9 @@
+{
+    "name": "maksim/m-on-proj-et",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
