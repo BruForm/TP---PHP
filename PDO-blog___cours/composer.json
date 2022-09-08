@@ -1,0 +1,10 @@
+{
+    "name": "bruno/pdo-blog",
+    "description": "pdo with objects",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
