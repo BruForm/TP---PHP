@@ -7,19 +7,19 @@ use App\Repository\Movie_repo;
 
 $movies = (new Movie_repo())->findMovies();
 
-echo "<Pre>";
-var_dump($movies);
-echo "</Pre>";
+//echo "<Pre>";
+//var_dump($movies);
+//echo "</Pre>";
 
 // Parametres du header
 $pageTitle = "Movies";
- $customCssLinks = ['<link rel="stylesheet" href="../style/movie.css">'];
+$customCssLinks = ['<link rel="stylesheet" href="../style/movie.css">'];
 ?>
     <!-- HEADER -->
 <?php require __DIR__ . DIRECTORY_SEPARATOR . "partial" . DIRECTORY_SEPARATOR . "header.php"; ?>
 
     <!-- BODY -->
-    <H1 class="text-center">Welcome to page Movies</H1>
+    <h1 class="text-center">Welcome to page Movies</h1>
 
     <table class="table table-dark table-striped table-hover">
         <thead>
@@ -35,11 +35,12 @@ $pageTitle = "Movies";
         <?php foreach ($movies as $key => $movie) : ?>
             <tr>
                 <td><img src="<?= $movie->getCover() ?>"></td>
-                <td><?= $movie->getTitle() ?></td>
-                <td><?= $movie->getDurationFormated() ?></td>
+                <td><a href="movieInformations.php?action=read&movieId=<?= $movie->getId() ?>" class="text-light">
+                        <?= $movie->getTitle() ?></a></td>
+                <td><?= $movie->getDurationFormatted() ?></td>
                 <td><?= $movie->getGenre() ?></td>
-                <td><?= $movie->getReleasedAt()->format("Y/m/d") ?></td>
-            </tr>
+                <td><?= $movie->getReleasedAtFormatted() ?></td>
+            </tr>1
         <?php endforeach ?>
         </tbody>
     </table>

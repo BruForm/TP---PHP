@@ -11,7 +11,7 @@ class Movie
     private int $duration;
     private string $cover;
     private string $synopsis;
-    private DateTime $releasedAt;
+    private string $releasedAt;
     private string $genre;
     private int $director_id;
     private int $compositor_id;
@@ -99,15 +99,15 @@ class Movie
     /**
      * @return DateTime
      */
-    public function getReleasedAt(): DateTime
+    public function getReleasedAt(): string
     {
         return $this->releasedAt;
     }
 
     /**
-     * @param DateTime $releasedAt
+     * @param string $releasedAt
      */
-    public function setReleasedAt(DateTime $releasedAt): void
+    public function setReleasedAt(string $releasedAt): void
     {
         $this->releasedAt = $releasedAt;
     }
@@ -162,8 +162,13 @@ class Movie
 
 //    FONCTIONS
 
-    public function getDurationFormated(): string
+    public function getDurationFormatted($format = "Y/m/d"): string
     {
         return floor($this->duration / 60) . "h " . ((($this->duration % 60) < 10) ? "0" . $this->duration % 60 : $this->duration % 60) . "min";
+    }
+
+    public function getReleasedAtFormatted($format = "Y/m/d"): string
+    {
+        return (new DateTime($this->releasedAt))->format($format);
     }
 }

@@ -19,20 +19,20 @@ DROP TABLE IF EXISTS director;
 CREATE TABLE director
 (
     id   INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL
+    directorName varchar(255) NOT NULL
 );
 INSERT INTO director
 VALUES (1, 'Georges Lucas');
 --
 INSERT INTO director
-VALUES (2, '	Paul Verhoeven');
+VALUES (2, 'Paul Verhoeven');
 --
 -- COMPOSITOR ---------------------------------------------------
 DROP TABLE IF EXISTS compositor;
 CREATE TABLE compositor
 (
     id   INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL
+    compositorName varchar(255) NOT NULL
 );
 INSERT INTO compositor
 VALUES (1, 'John Williams');
@@ -45,7 +45,7 @@ DROP TABLE IF EXISTS actor;
 CREATE TABLE actor
 (
     id   INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255) NOT NULL
+    actorName varchar(255) NOT NULL
 );
 INSERT INTO actor
 VALUES (1, 'Casper Van Dien');

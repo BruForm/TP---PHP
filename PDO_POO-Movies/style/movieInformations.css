@@ -1,0 +1,24 @@
+.main{
+    display: flex;
+    gap: 20px;
+}
+.leftPart{
+    flex-grow: 0;
+    width: fit-content;
+}
+
+.mainPart{
+    flex-grow: 1;
+}
+
+.rightPart{
+    flex-grow: 0;
+}
+
+.mainPart div div{
+    display: none;
+}
+
+.mainPart button{
+    display: none;
+}

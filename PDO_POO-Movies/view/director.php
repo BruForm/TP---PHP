@@ -31,7 +31,7 @@ $customCssLinks = ['<link rel="stylesheet" href="../style/director.css">'];
     <tbody>
     <?php foreach ($directors as $key => $director) : ?>
         <tr>
-            <td><?= $director->getName() ?></td>
+            <td><?= $director->getDirectorName() ?></td>
         </tr>
     <?php endforeach ?>
     </tbody>

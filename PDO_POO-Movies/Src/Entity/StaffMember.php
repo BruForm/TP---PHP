@@ -5,7 +5,7 @@ namespace App\Entity;
 abstract class StaffMember
 {
    protected int $id;
-   protected string $name;
+//   protected string $name;
 
     /**
      * @return int
@@ -23,20 +23,20 @@ abstract class StaffMember
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
+//    /**
+//     * @return string
+//     */
+//    public function getName(): string
+//    {
+//        return $this->name;
+//    }
+//
+//    /**
+//     * @param string $name
+//     */
+//    public function setName(string $name): void
+//    {
+//        $this->name = $name;
+//    }
 
 }

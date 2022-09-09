@@ -31,7 +31,7 @@ $customCssLinks = ['<link rel="stylesheet" href="../style/actor.css">'];
         <tbody>
         <?php foreach ($actors as $key => $actor) : ?>
             <tr>
-                <td><?= $actor->getName() ?></td>
+                <td><?= $actor->getActorName() ?></td>
             </tr>
         <?php endforeach ?>
         </tbody>

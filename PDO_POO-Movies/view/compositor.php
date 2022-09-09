@@ -31,7 +31,7 @@ $customCssLinks = ['<link rel="stylesheet" href="../style/compositor.css">'];
         <tbody>
         <?php foreach ($compositors as $key => $compositor) : ?>
             <tr>
-                <td><?= $compositor->getName() ?></td>
+                <td><?= $compositor->getCompositorName() ?></td>
             </tr>
         <?php endforeach ?>
         </tbody>
